@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+#left-panel {
+  float: left;
+  width:200px;
+}
+
+.hide-panel {
+  width: 0;
+  margin-left: -400px;
+}
+
+#all-stadiums {
+  position:relative;
+  left: -40px;
+  top: 70px;
+  list-style-type: none;
+}
+
+#search-fild {
+  border: 2px red;
+  border-style: double;
+  position: absolute;
+  left: 10px;
+  top: 70px;
+  color: red;
+  font-size: 12px;
+}
+
+#toggle-nav {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 25px;
+  color: red;
+  z-index: 1;
+}
+
+.stadiums-list {
+  cursor: pointer;
+  padding: 5px;
+  color: red;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  #left-panel {
+    width:150px;
+  }
+
+  .stadiums-list {
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  #search-fild {
+    font-size: 10px;
+  }
+
+}
+
+	@media screen and (max-width: 450px) {
+    #left-panel {
+      width:100px;
+    }
+
+    .stadiums-list {
+      padding: 2px;
+      font-size: 8px;
+    }
+
+    #search-fild {
+      font-size: 6px;
+    }
+}
