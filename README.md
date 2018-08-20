@@ -2,7 +2,7 @@
 This is the Udacity FEND course final project.
 
 ## Download and installation
-You can download or clone project from the Github: https://github.com/Vicyn666/vicyn-map
+You can download or clone project from the Github: https://github.com/Vicyn666/moscow-stadiums
 After that please:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
