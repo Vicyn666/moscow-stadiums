@@ -6,12 +6,20 @@ class LeftPanel extends Component {
   state = {
     query: ''
   }
+
+  /*
+  rendering left panel:
+  search field
+  list of stadiums after filtration/all by default
+  */
   render = () => {
     return (
       <div id = "left-panel">
+
       <input type = "text" placeholder = "Enter the name"
       id = "search-fild"
       onChange = {this.props.filter}/>
+
       <ul id = "all-stadiums">
       {
         this.props.stadiums.map((mark,index) => {

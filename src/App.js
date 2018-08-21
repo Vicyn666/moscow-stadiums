@@ -5,6 +5,7 @@ import React, {
 import LeftPanel from './LeftPanel';
 class App extends Component {
   state = {
+    //initial data of 7 stadiums names and locations
     stadiums: [
       {
         name:'Luzhniki Stadium',
@@ -54,6 +55,7 @@ class App extends Component {
     isOpen: true
   }
 
+//initialisation of google.map after the loading of content with personal key
   componentDidMount = () => {
     window.initMap = this.initMap;
     generateMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyDc-WE-UOq2fDVZGC8Lt1fJHWTf_p7s3ps&callback=initMap')
@@ -71,6 +73,7 @@ class App extends Component {
       map: map
     })
 
+//creating new list of objects with extended markers-stadiums: locations, names, icon etc.
     var bounds = new google.maps.LatLngBounds();
     var allStadiums = [];
     this.state.stadiums.forEach(eachStad => {
@@ -85,10 +88,11 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP
       })
       allStadiums.push(marker);
+
+      //modifying the map size to all markers-stadiums
       var locations = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
-
       bounds.extend(locations);
-
+      //event listener for markers to open infowindow
       google.maps.event.addListener(marker,'click',()=> {
         this.openInfoWindow(marker);
       })
@@ -104,18 +108,21 @@ class App extends Component {
     })
   }
 
+//animation for bouncing of icon on click + requesting of additional data from foursquare + opening of InfoWindow with this data
   openInfoWindow = (marker) => {
     marker.setAnimation(window.google.maps.Animation.BOUNCE);
     setTimeout(function() {
       marker.setAnimation(null);
     }, 1500);
 
+//centering map on selected marker-stadium
     this.state.map.setCenter(marker.getPosition());
 
     var lat = marker.getPosition().lat();
     var lng = marker.getPosition().lng();
+//retrieving venue basic info from foursquare according to the location and category of venue(football stadium)
     var request = "https://api.foursquare.com/v2/venues/search?client_id=0GKD3RMUM1VKZNGPU3S4BB4VZU2IADX1JM5AL2X2MDHYRHPW&client_secret=XWARF1C1LI2PRENKBKPKRZNZKF5OVIWSZIYUCAD4QRATJIHX&v=20180820&categoryId=4bf58dd8d48988d188941735&ll=" + lat + "," + lng + "";
-
+//recognition of error during request
     fetch(request)
       .then((data)=>{
         if (data.status !== 200) {
@@ -130,6 +137,7 @@ class App extends Component {
                 resp.json()
                   .then(data=>{
                     var venue = data.response.venue;
+//3 fields from response of foursquare regarding our venue - name, ratin, likes
                     this.state.infowindow.setContent(`<b>Foursquare info:</b> <br>${venue.name} <br><br>Rating: ${venue.rating}<br>Likes: ${venue.likes.count}`)
                   })
               })
@@ -139,6 +147,8 @@ class App extends Component {
 
     this.state.infowindow.open(this.state.map,marker);
   }
+
+  //searching the name in search field at LeftPanel: hiding opened infowindows, selecting matching markes-stadiums on the map
   filter = (event) => {
     this.state.infowindow.close();
       var filteredStadiums = [];
@@ -166,9 +176,8 @@ class App extends Component {
     })
   }
 
-
+//left panel hiding/unhiding
   toggleNav = () => {
-
     document.getElementById('left-panel').classList.toggle('hide-panel')
     if (document.getElementById('left-panel').className === 'hide-panel') {
       this.setState({
@@ -178,6 +187,7 @@ class App extends Component {
     this.state.infowindow.close();
   }
 
+//rendering page stusture and connecting leftpanel component
   render = () => {
     return (
       <div id = "container">
@@ -199,6 +209,7 @@ class App extends Component {
 
 export default App;
 
+//basic function with script for google.map initialisation
 function generateMap(googleUrl) {
 
   var refers = window.document.getElementsByTagName('script')[0];

@@ -1,4 +1,4 @@
-# Neighborhood Map Project
+# Neighborhood Map Project / Moscow football stadiums map
 This is the Udacity FEND course final project.
 
 ## Download and installation
@@ -9,8 +9,10 @@ After that please:
 NPM will automatically open the program on host http://localhost:3000/
 
 ## Content
-This is a map with 5 football stadiums on Moscow, Russia.
-You can click on each and find some information from Foursquare.
+This is a map with 7 football stadiums in Moscow, Russia.
+You can click on each and find information about one`s rating and number of likes from Foursquare.
 
 ## Functionality
 You can select item from the list on the left side and correct marker will be shown on the map.
+You can hide left panel by clicking on the hamburger icon in the top-left corner.
+Page has responsive design for different sizes of mobile devices.
